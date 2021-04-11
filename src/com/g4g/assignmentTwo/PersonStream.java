@@ -59,10 +59,16 @@ public class PersonStream {
 		System.out.println("PEople with age>20 or vowels in their name");
 
 		people.stream()
-				.filter(x -> checkForVowels(x.getName()))
+				.filter(x -> checkForVowels(x.getName())) // the logic is slightly incorrect here, you are doing and operation of both the conditions
 				.filter(x -> x.age > 20)
 				.forEach(System.out::println);
-
+		
+		// Correct code for Q2
+		people.stream()
+				.filter(x -> checkForVowels(x.getName()) || x.age > 20) 
+				.forEach(System.out::println);
+		
+		
 		//3. sort list in ascending , same age sort descending order of name
 		System.out.println("sort list in ascending , same age sort descending order of name");
 		Comparator<PersonStream> compareByName = Comparator.comparing(PersonStream::getName);
@@ -71,6 +77,13 @@ public class PersonStream {
 		for (PersonStream p : people) {
 			System.out.println("name: " + p.name + " Age: " + p.age);
 		}
+		
+		// The answer is correct but code quality can be improved by using streams
+		// the reduced code using streams is as follows
+		people.stream()
+			.sorted(Comparator.comparing(PersonStream::getAge)
+				.thenComparing(PersonStream::getName, Comparator.reverseOrder()))
+			.forEach(x -> System.out.println(x.getName()));
 
 		//4. Key:value: CountryName:Count
 		System.out.println("Map of country name and count");
