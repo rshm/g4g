@@ -1,14 +1,14 @@
-package com.g4g;
+package com.g4g.assignmentTwo;
 
-import java.sql.SQLOutput;
-import java.text.CollationElementIterator;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Random;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * Assignment 1 (Streams)
@@ -77,7 +77,7 @@ public class PersonStream {
 		Map<String, Long> map = people.stream()
 									  .collect(Collectors.groupingBy(PersonStream::getCountry, Collectors.counting()));
 		System.out.println("Map is: " + map);
-xx
+
 		System.out.println("Map CountryName:AveragingAge: ");
 		Map<String,Double> countryAge = people.stream()
 											  .collect(Collectors.groupingBy(PersonStream::getCountry,Collectors.averagingDouble(PersonStream::getAge)));
@@ -89,7 +89,11 @@ xx
 		System.out.println("countryOldestPerson Map is: " + countryOldestPerson);
 
 		System.out.println("Print the country with most people");
-		people.stream().collect(Collectors.groupingBy(PersonStream::getCountry,Collectors.counting()));
+		System.out.println(map.entrySet().stream().max(Comparator.comparing(Map.Entry::getValue)));
+
+		System.out.println("Create a list of 20 random integers in the range 0 - 1000 using Java 8 streams");
+		Random rand = new Random();
+		rand.ints(20,0,1001).forEach(System.out::println);
 	}
 
 	public static boolean checkForVowels(String name) {
