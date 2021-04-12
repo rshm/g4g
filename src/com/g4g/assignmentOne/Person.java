@@ -73,6 +73,17 @@ public class Person {
 		}
 		int i = 1;
 		printList(personList);
+		
+		// This is an incorrect way of selecting numbers, if you change the positions of numbers in your list, you will see different answers
+		// For example: 
+		// person.add(four);
+		// person.add(two);
+		// person.add(three);
+		// person.add(one);
+		//
+		// You will see the answer as 23 which is incorrect
+		//
+		//
 		if ((i + 1) < personList.size() && personList.get(i - 1).id > personList.get(i + 1).id) {
 			System.out.println("Choosing Right  i=" + (i + 1));
 			currentMinSum = personList.get(i).id + personList.get(i + 1).id;
