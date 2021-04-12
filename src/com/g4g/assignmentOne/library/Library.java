@@ -5,6 +5,7 @@ import java.util.List;
 public class Library {
 	List<Book> books;
 	List<User> users;
+	String address;
 
 	public List<Book> getBooks() {
 		return books;
